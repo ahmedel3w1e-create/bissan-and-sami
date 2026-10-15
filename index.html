@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بيسانتو & سامي | 8/8/2026 🌊💙</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;600;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aqua: {
+                            50: '#f0fcfd',
+                            100: '#ccf5fa',
+                            200: '#99ecf6',
+                            300: '#5ee0f0',
+                            400: '#23cbe3',
+                            500: '#0bb0c9',
+                            600: '#0a8aa3',
+                            700: '#0d6f85',
+                            800: '#13596c',
+                            900: '#144b5b',
+                            950: '#07313e',
+                        }
+                    },
+                    fontFamily: {
+                        amiri: ['Amiri', 'serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                        kufi: ['Reem Kufi', 'sans-serif'],
+                        ruqaa: ['Aref Ruqaa', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #04121a;
+            color: #ffffff;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Ambient Moonlit Night Sea Gradient */
+        .moonlit-ocean {
+            background: radial-gradient(circle at 50% 10%, #1e5a75 0%, #082938 45%, #03131c 85%, #010a0f 100%);
+        }
+
+        /* Premium Glassmorphism */
+        .crystal-glass {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(125, 225, 245, 0.22);
+            box-shadow: 0 16px 40px 0 rgba(2, 28, 41, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .crystal-glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(10, 138, 163, 0.08) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(153, 236, 246, 0.25);
+            box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        /* Glowing text & icons */
+        .glow-cyan {
+            text-shadow: 0 0 12px rgba(94, 224, 240, 0.8), 0 0 28px rgba(35, 203, 227, 0.5);
+        }
+
+        .glow-pink {
+            text-shadow: 0 0 12px rgba(244, 114, 182, 0.8), 0 0 28px rgba(236, 72, 153, 0.5);
+        }
+
+        /* Canvas positions */
+        #particleCanvas, #rippleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Floating Animation */
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .animate-float {
+            animation: gentleFloat 5s ease-in-out infinite;
+        }
+
+        /* Pulsing Glow */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(35, 203, 227, 0.3), inset 0 0 15px rgba(35, 203, 227, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(35, 203, 227, 0.7), inset 0 0 25px rgba(35, 203, 227, 0.4); }
+        }
+
+        .pulse-border {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+
+        /* Rotating Sound Disk */
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .spin-slow {
+            animation: spinSlow 12s linear infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #03131c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0bb0c9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="moonlit-ocean min-h-screen relative flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Interactive Background Canvases -->
+    <canvas id="particleCanvas"></canvas>
+    <canvas id="rippleCanvas"></canvas>
+
+    <!-- Floating Audio Control Button -->
+    <div id="audioControls" class="fixed top-5 left-5 z-50 hidden transition-all duration-700 opacity-0 transform -translate-y-4">
+        <button id="toggleAudioBtn" class="crystal-glass text-aqua-200 hover:text-white px-4 py-3 rounded-full flex items-center space-x-3 space-x-reverse transition-all transform hover:scale-105 active:scale-95 shadow-xl border border-aqua-300/40 group">
+            <div class="relative w-8 h-8 flex items-center justify-center rounded-full bg-aqua-500/20 border border-aqua-300/30">
+                <i id="audioIcon" class="fas fa-compact-disc text-aqua-300 text-lg group-hover:text-pink-300 transition-colors"></i>
+            </div>
+            <div class="text-right pr-1">
+                <span id="audioStatusTitle" class="block text-xs font-bold text-white font-tajawal">موسيقى البحر الحية</span>
+                <span id="audioStatusSub" class="block text-[10px] text-aqua-200/80 font-tajawal">انقر للتشغيل / الكتم</span>
+            </div>
+        </button>
+    </div>
+
+    <!-- ==================== LOCK SCREEN / PASSWORD GATE ==================== -->
+    <section id="lockScreen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gradient-to-b from-slate-950 via-aqua-950 to-slate-900 transition-all duration-1000">
+        
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute top-1/4 left-1/3 w-72 h-72 bg-aqua-400/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/3 w-80 h-80 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="crystal-glass max-w-md w-full p-8 sm:p-10 rounded-3xl text-center shadow-2xl relative overflow-hidden pulse-border animate-float">
+            
+            <div class="mb-6 inline-flex p-5 rounded-full bg-gradient-to-tr from-aqua-600/30 to-pink-500/20 border border-aqua-300/40 shadow-inner">
+                <i class="fas fa-lock text-3xl sm:text-4xl text-aqua-200 glow-cyan"></i>
+            </div>
+
+            <h1 class="text-2xl sm:text-3xl font-kufi font-extrabold text-white mb-2 glow-cyan">بوابة محيط بيسان</h1>
+            <p class="text-aqua-100/80 text-xs sm:text-sm mb-6 font-tajawal leading-relaxed">
+                أدخلي كلمة السر للعبور إلى شاطئ الحب بين <span class="text-aqua-300 font-bold">سامي</span> و<span class="text-pink-300 font-bold">بيسانتو</span>
+            </p>
+
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                <div class="relative">
+                    <input type="password" id="passwordInput" placeholder="ادخلي كلمة السر..." 
+                        class="w-full px-5 py-3.5 rounded-2xl bg-slate-900/60 border border-aqua-300/30 text-center text-lg text-white placeholder-aqua-200/40 focus:outline-none focus:ring-2 focus:ring-aqua-400 focus:border-transparent transition-all font-sans"
+                        autocomplete="off">
+                    <i class="fas fa-key absolute left-4 top-1/2 -translate-y-1/2 text-aqua-300/40"></i>
+                </div>
+
+                <div id="errorMessage" class="text-pink-300 text-xs hidden animate-pulse font-tajawal">
+                    <i class="fas fa-exclamation-triangle ml-1"></i> كلمة السر غير صحيحة، تذكري الاسم الجميل (bissan)!
+                </div>
+
+                <button type="submit" 
+                    class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-aqua-500 via-aqua-600 to-pink-500 hover:from-aqua-400 hover:to-pink-400 text-white font-bold text-base sm:text-lg shadow-lg hover:shadow-aqua-400/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2 space-x-reverse">
+                    <span>افتحي العالم الأكوا</span>
+                    <i class="fas fa-water text-sm"></i>
+                </button>
+            </form>
+
+            <div class="mt-6 text-[11px] text-aqua-200/60 font-tajawal">
+                💡 السر: اكتب كلمة <span class="text-pink-300 font-bold font-sans">bissan</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MAIN APPLICATION CONTENT ==================== -->
+    <main id="mainContent" class="relative z-10 min-h-screen flex flex-col justify-between hidden opacity-0 transition-opacity duration-1000">
+
+        <!-- HEADER SECTION -->
+        <header class="container mx-auto px-4 pt-10 sm:pt-14 text-center relative">
+            
+            <!-- Badge -->
+            <div class="inline-flex items-center space-x-2 space-x-reverse px-6 py-2 rounded-full crystal-glass border border-aqua-300/40 text-aqua-100 text-xs sm:text-sm font-bold mb-6 shadow-lg">
+                <i class="fas fa-gem text-aqua-300 text-xs"></i>
+                <span>ليلة العشق الأبدي: ٨ / ٨ / ٢٠٢٦</span>
+                <i class="fas fa-heart text-pink-400 text-xs glow-pink"></i>
+            </div>
+
+            <!-- Couple Name Title -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-ruqaa font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-aqua-100 to-aqua-300 glow-cyan leading-tight mb-4">
+                بيسانتو & سامي
+            </h1>
+
+            <p class="text-base sm:text-2xl text-aqua-200/90 font-amiri italic max-w-2xl mx-auto leading-relaxed">
+                "أمواج البحر الأزرق الفاتح تهمس باسمكِ يا بيسان.. وتكتب للحب حكاية لا تنتهي"
+            </p>
+
+            <!-- Countdown Timer Card -->
+            <div class="max-w-xl mx-auto mt-8 p-4 rounded-2xl crystal-glass border border-aqua-300/30 shadow-xl">
+                <div class="text-xs text-aqua-200/80 font-tajawal mb-2 flex items-center justify-center space-x-1 space-x-reverse">
+                    <i class="far fa-clock"></i>
+                    <span>العد التنازلي للموعد الموعود (8/8/2026)</span>
+                </div>
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 text-center font-tajawal" id="countdownTimer">
+                    <div class="p-2 sm:p-3 rounded-xl bg-slate-900/50 border border-aqua-300/20">
+                        <span id="cdDays" class="block text-lg sm:text-2xl font-bold text-aqua-300 font-sans">--</span>
+                        <span class="text-[10px] sm:text-xs text-aqua-100/70">يوم</span>
+                    </div>
+                    <div class="p-2 sm:p-3 rounded-xl bg-slate-900/50 border border-aqua-300/20">
+                        <span id="cdHours" class="block text-lg sm:text-2xl font-bold text-white font-sans">--</span>
+                        <span class="text-[10px] sm:text-xs text-aqua-100/70">ساعة</span>
+                    </div>
+                    <div class="p-2 sm:p-3 rounded-xl bg-slate-900/50 border border-aqua-300/20">
+                        <span id="cdMinutes" class="block text-lg sm:text-2xl font-bold text-white font-sans">--</span>
+                        <span class="text-[10px] sm:text-xs text-aqua-100/70">دقيقة</span>
+                    </div>
+                    <div class="p-2 sm:p-3 rounded-xl bg-slate-900/50 border border-aqua-300/20">
+                        <span id="cdSeconds" class="block text-lg sm:text-2xl font-bold text-pink-300 font-sans">--</span>
+                        <span class="text-[10px] sm:text-xs text-aqua-100/70">ثانية</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- POEM DISPLAY SECTION -->
+        <section class="container mx-auto px-4 py-10 max-w-3xl">
+            <div class="crystal-glass-card rounded-3xl p-6 sm:p-12 border border-aqua-300/30 relative overflow-hidden shadow-2xl animate-float">
+                
+                <!-- Background Decorative Waves & Hearts -->
+                <i class="fas fa-water absolute top-6 right-6 text-aqua-300/10 text-7xl pointer-events-none"></i>
+                <i class="fas fa-heart absolute bottom-6 left-6 text-pink-400/10 text-7xl pointer-events-none"></i>
+
+                <div class="text-center space-y-6 sm:space-y-8 font-amiri text-xl sm:text-2xl md:text-3xl leading-relaxed text-slate-100">
+                    
+                    <div class="inline-block px-4 py-2 rounded-xl bg-aqua-500/10 border border-aqua-300/20 text-aqua-200 text-sm sm:text-base font-tajawal mb-2">
+                        ✨ قصيدة البحر الأزرق الفاتح ✨
+                    </div>
+
+                    <p class="text-pink-300 font-bold italic text-lg sm:text-2xl leading-loose">
+                        "في عينيها يبدأ البحر الأزرق الفاتح رحلته... ومن قلبها يشرق الحب من جديد!"
+                    </p>
+
+                    <div class="space-y-5">
+                        <div class="hover:text-aqua-300 transition-colors duration-300">
+                            أقبلتَ يا <span class="text-aqua-300 font-bold glow-cyan">سامي</span> والتاريخُ يتزيّنُ بخطوتِك
+                        </div>
+                        <div class="hover:text-aqua-300 transition-colors duration-300">
+                            في يومِ عيدِ العشقِ <span class="text-pink-300 font-sans font-bold">8/8/2026</span> يُشرقُ أملُنا
+                        </div>
+
+                        <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-aqua-300/50 to-transparent mx-auto my-3"></div>
+
+                        <div class="hover:text-aqua-300 transition-colors duration-300">
+                            هذا هو البحرُ الساحرُ، أزرقٌ فاتحٌ صفاؤُه
+                        </div>
+                        <div class="hover:text-pink-300 transition-colors duration-300">
+                            كعينِ <span class="text-pink-300 font-bold glow-pink">بيسانَ</span> التي تروي للقلبِ حنينَنا!
+                        </div>
+
+                        <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-pink-400/50 to-transparent mx-auto my-3"></div>
+
+                        <div class="hover:text-aqua-300 transition-colors duration-300">
+                            يا <span class="text-aqua-300 font-bold">بيسانتو</span> يا نغماً يُعانقُ الموجَ والندى
+                        </div>
+                        <div class="hover:text-aqua-200 transition-colors duration-300 font-bold text-aqua-200">
+                            البحرُ يشهدُ أن حبَّ <span class="text-aqua-300">سامي</span> و<span class="text-pink-300">بيسانَ</span> قد ملكَ المدى!
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE PHOTO GALLERY -->
+        <section class="container mx-auto px-4 py-8 max-w-4xl">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl sm:text-3xl font-kufi text-white glow-cyan mb-2">ألبوم البحر المضيء 📸💙</h2>
+                <p class="text-xs sm:text-sm text-aqua-200/80 font-tajawal">انقري على أي بطاقة لرفع وصوركِ الخاصة لتكتمل اللوحة</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6" id="photoGallery">
+                
+                <!-- Card 1 -->
+                <div class="crystal-glass-card rounded-2xl p-4 border border-aqua-300/30 text-center relative group overflow-hidden transition-all transform hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="aspect-square rounded-xl overflow-hidden bg-slate-900/60 relative flex items-center justify-center border border-aqua-300/20">
+                        <img id="imgPreview1" src="https://placehold.co/600x600/0d6f85/ffffff?text=Sami+%26+Bissan" alt="سامي وبيسان" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <input type="file" id="fileInput1" accept="image/*" class="hidden" onchange="previewImage(event, 'imgPreview1')">
+                        <button onclick="document.getElementById('fileInput1').click()" class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white font-tajawal text-xs space-y-1">
+                            <i class="fas fa-camera text-2xl text-aqua-300"></i>
+                            <span>تغيير الصورة</span>
+                        </button>
+                    </div>
+                    <p class="text-xs text-aqua-200 font-tajawal mt-3 font-semibold">بحر العشق الأزرق 🌊</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="crystal-glass-card rounded-2xl p-4 border border-aqua-300/30 text-center relative group overflow-hidden transition-all transform hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="aspect-square rounded-xl overflow-hidden bg-slate-900/60 relative flex items-center justify-center border border-aqua-300/20">
+                        <img id="imgPreview2" src="https://placehold.co/600x600/13596c/99ecf6?text=8-8-2026" alt="الموعد الخاص" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <input type="file" id="fileInput2" accept="image/*" class="hidden" onchange="previewImage(event, 'imgPreview2')">
+                        <button onclick="document.getElementById('fileInput2').click()" class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white font-tajawal text-xs space-y-1">
+                            <i class="fas fa-camera text-2xl text-pink-300"></i>
+                            <span>تغيير الصورة</span>
+                        </button>
+                    </div>
+                    <p class="text-xs text-pink-300 font-tajawal mt-3 font-semibold">تاريخنا الخالد 8/8/2026 ✨</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="crystal-glass-card rounded-2xl p-4 border border-aqua-300/30 text-center relative group overflow-hidden transition-all transform hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="aspect-square rounded-xl overflow-hidden bg-slate-900/60 relative flex items-center justify-center border border-aqua-300/20">
+                        <img id="imgPreview3" src="https://placehold.co/600x600/0a8aa3/ffffff?text=Bissanto" alt="بيسانتو" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <input type="file" id="fileInput3" accept="image/*" class="hidden" onchange="previewImage(event, 'imgPreview3')">
+                        <button onclick="document.getElementById('fileInput3').click()" class="absolute inset-0 bg-slate-950/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white font-tajawal text-xs space-y-1">
+                            <i class="fas fa-camera text-2xl text-aqua-300"></i>
+                            <span>تغيير الصورة</span>
+                        </button>
+                    </div>
+                    <p class="text-xs text-aqua-200 font-tajawal mt-3 font-semibold">ابتسامة بيسانتو 🌸</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-8 text-center text-xs text-aqua-200/70 font-tajawal border-t border-aqua-300/10 mt-12 bg-slate-950/40">
+            <div class="container mx-auto px-4 space-y-2">
+                <p class="flex items-center justify-center space-x-1 space-x-reverse text-sm text-white">
+                    <span>صُمم هذا المحيط بكل الحب والوفاء لأجل</span>
+                    <span class="text-pink-300 font-bold glow-pink">بيسان (بيسانتو)</span>
+                    <span>من</span>
+                    <span class="text-aqua-300 font-bold glow-cyan">سامي</span>
+                </p>
+                <p class="text-aqua-200/50 text-[11px]">8/8/2026 - أنتما أجمل حكاية في هذا الكون 💙✨</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- ==================== JAVASCRIPT SYSTEM ==================== -->
+    <script>
+        /* -------------------------------------------------------------
+           1. PASSWORD LOCK & NAVIGATION LOGIC
+        ------------------------------------------------------------- */
+        function handleLogin(e) {
+            e.preventDefault();
+            const passwordInput = document.getElementById('passwordInput').value.trim().toLowerCase();
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (passwordInput === 'bissan') {
+                const lockScreen = document.getElementById('lockScreen');
+                const mainContent = document.getElementById('mainContent');
+                const audioControls = document.getElementById('audioControls');
+
+                lockScreen.classList.add('opacity-0', 'pointer-events-none');
+                
+                setTimeout(() => {
+                    lockScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                    audioControls.classList.remove('hidden');
+                    
+                    setTimeout(() => {
+                        mainContent.classList.remove('opacity-0');
+                        audioControls.classList.remove('opacity-0', '-translate-y-4');
+                    }, 50);
+
+                    // Initialize Procedural Web Audio Synth
+                    initAudioContext();
+                    startAmbientSeaAndPiano();
+                    startCountdown();
+                }, 1000);
+
+            } else {
+                errorMessage.classList.remove('hidden');
+                document.getElementById('passwordInput').classList.add('border-pink-500');
+                setTimeout(() => {
+                    document.getElementById('passwordInput').classList.remove('border-pink-500');
+                }, 1000);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           2. COUNTDOWN TIMER TO 8/8/2026
+        ------------------------------------------------------------- */
+        function startCountdown() {
+            const targetDate = new Date('2026-08-08T00:00:00').getTime();
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const difference = targetDate - now;
+
+                if (difference > 0) {
+                    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                    document.getElementById('cdDays').textContent = days;
+                    document.getElementById('cdHours').textContent = hours.toString().padStart(2, '0');
+                    document.getElementById('cdMinutes').textContent = minutes.toString().padStart(2, '0');
+                    document.getElementById('cdSeconds').textContent = seconds.toString().padStart(2, '0');
+                } else {
+                    document.getElementById('countdownTimer').innerHTML = '<div class="col-span-4 text-pink-300 font-bold text-lg py-2">🎉 حان اليوم الموعود! 8/8/2026 🎉</div>';
+                }
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        /* -------------------------------------------------------------
+           3. SYNTHESIZED PROCEDURAL AUDIO (Waves + Piano Melody)
+        ------------------------------------------------------------- */
+        let audioCtx = null;
+        let isAudioPlaying = false;
+        let masterGain = null;
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+                masterGain = audioCtx.createGain();
+                masterGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+                masterGain.connect(audioCtx.destination);
+            }
+        }
+
+        function startAmbientSeaAndPiano() {
+            if (!audioCtx) return;
+
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            // Create Ocean Waves Noise Buffer
+            const bufferSize = audioCtx.sampleRate * 4;
+            const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const output = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+
+            const whiteNoise = audioCtx.createBufferSource();
+            whiteNoise.buffer = noiseBuffer;
+            whiteNoise.loop = true;
+
+            // Lowpass Filter for Ocean Sound
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(320, audioCtx.currentTime);
+
+            // Wave LFO Volume Modulation
+            const waveGain = audioCtx.createGain();
+            waveGain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+
+            // LFO for wave swelling effect
+            const lfo = audioCtx.createOscillator();
+            lfo.frequency.setValueAtTime(0.1, audioCtx.currentTime); 
+            const lfoGain = audioCtx.createGain();
+            lfoGain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+
+            lfo.connect(lfoGain);
+            lfoGain.connect(waveGain.gain);
+
+            whiteNoise.connect(filter);
+            filter.connect(waveGain);
+            waveGain.connect(masterGain);
+
+            whiteNoise.start();
+            lfo.start();
+
+            // Start Piano Notes Loop
+            isAudioPlaying = true;
+            schedulePianoNotes();
+
+            // Rotate Icon Animation
+            document.getElementById('audioIcon').classList.add('spin-slow');
+        }
+
+        const pianoScale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25, 783.99];
+
+        function playPianoNote(freq) {
+            if (!audioCtx || !isAudioPlaying) return;
+
+            const osc = audioCtx.createOscillator();
+            const noteGain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            noteGain.gain.setValueAtTime(0, audioCtx.currentTime);
+            noteGain.gain.linearRampToValueAtTime(0.07, audioCtx.currentTime + 0.12);
+            noteGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 3.2);
+
+            osc.connect(noteGain);
+            noteGain.connect(masterGain);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 3.2);
+        }
+
+        function schedulePianoNotes() {
+            if (!isAudioPlaying) return;
+
+            const note = pianoScale[Math.floor(Math.random() * pianoScale.length)];
+            playPianoNote(note);
+
+            const delay = Math.random() * 2200 + 1400;
+            setTimeout(schedulePianoNotes, delay);
+        }
+
+        // Toggle Audio Control
+        document.getElementById('toggleAudioBtn').addEventListener('click', () => {
+            if (!audioCtx) return;
+            const audioIcon = document.getElementById('audioIcon');
+            const statusSub = document.getElementById('audioStatusSub');
+
+            if (isAudioPlaying) {
+                masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+                isAudioPlaying = false;
+                audioIcon.classList.remove('spin-slow');
+                audioIcon.className = 'fas fa-volume-mute text-pink-300 text-lg';
+                statusSub.textContent = 'الصوت مكتوم';
+            } else {
+                masterGain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+                isAudioPlaying = true;
+                audioIcon.className = 'fas fa-compact-disc text-aqua-300 text-lg spin-slow';
+                statusSub.textContent = 'الموسيقى تعمل 🎵';
+                schedulePianoNotes();
+            }
+        });
+
+        /* -------------------------------------------------------------
+           4. FLOATING HEARTS & LIGHT PARTICLES CANVAS
+        ------------------------------------------------------------- */
+        const pCanvas = document.getElementById('particleCanvas');
+        const pCtx = pCanvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            pCanvas.width = window.innerWidth;
+            pCanvas.height = window.innerHeight;
+            rCanvas.width = window.innerWidth;
+            rCanvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * pCanvas.width;
+                this.y = pCanvas.height + Math.random() * 80;
+                this.size = Math.random() * 12 + 6;
+                this.speedY = Math.random() * 0.8 + 0.4;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.6 + 0.2;
+                this.isHeart = Math.random() > 0.45;
+                this.color = Math.random() > 0.5 ? '#5ee0f0' : '#f472b6';
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                if (this.y < -20) this.reset();
+            }
+            draw() {
+                pCtx.save();
+                pCtx.globalAlpha = this.opacity;
+                pCtx.fillStyle = this.color;
+                
+                if (this.isHeart) {
+                    pCtx.font = `${this.size}px Arial, sans-serif`;
+                    pCtx.fillText('♥', this.x, this.y);
+                } else {
+                    pCtx.beginPath();
+                    pCtx.arc(this.x, this.y, this.size / 3, 0, Math.PI * 2);
+                    pCtx.shadowBlur = 8;
+                    pCtx.shadowColor = this.color;
+                    pCtx.fill();
+                }
+                pCtx.restore();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((window.innerWidth * window.innerHeight) / 16000);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        /* -------------------------------------------------------------
+           5. INTERACTIVE WATER RIPPLE CANVAS
+        ------------------------------------------------------------- */
+        const rCanvas = document.getElementById('rippleCanvas');
+        const rCtx = rCanvas.getContext('2d');
+        let ripples = [];
+
+        class Ripple {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 2;
+                this.maxRadius = Math.random() * 35 + 25;
+                this.opacity = 0.85;
+                this.speed = Math.random() * 1.5 + 1;
+            }
+            update() {
+                this.radius += this.speed;
+                this.opacity -= 0.018;
+            }
+            draw() {
+                rCtx.save();
+                rCtx.beginPath();
+                rCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                rCtx.strokeStyle = `rgba(94, 224, 240, ${this.opacity})`;
+                rCtx.lineWidth = 2;
+                rCtx.stroke();
+                rCtx.restore();
+            }
+        }
+
+        function animateRipples() {
+            rCtx.clearRect(0, 0, rCanvas.width, rCanvas.height);
+            for (let i = ripples.length - 1; i >= 0; i--) {
+                ripples[i].update();
+                ripples[i].draw();
+                if (ripples[i].opacity <= 0) {
+                    ripples.splice(i, 1);
+                }
+            }
+            requestAnimationFrame(animateRipples);
+        }
+
+        // Spawn ripple and heart on click/tap
+        window.addEventListener('click', (e) => {
+            ripples.push(new Ripple(e.clientX, e.clientY));
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.15) {
+                ripples.push(new Ripple(e.clientX, e.clientY));
+            }
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0 && Math.random() < 0.2) {
+                ripples.push(new Ripple(e.touches[0].clientX, e.touches[0].clientY));
+            }
+        });
+
+        /* -------------------------------------------------------------
+           6. IMAGE PREVIEW / UPLOAD LOGIC
+        ------------------------------------------------------------- */
+        function previewImage(event, targetImgId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(targetImgId).src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           INITIALIZE ON LOAD
+        ------------------------------------------------------------- */
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        window.onload = function() {
+            resizeCanvas();
+            initParticles();
+            animateParticles();
+            animateRipples();
+        };
+    </script>
+</body>
+</html>
